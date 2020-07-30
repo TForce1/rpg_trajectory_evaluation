@@ -306,9 +306,7 @@ def main():
 
         print(Fore.GREEN +
               "#### Done processing error type {0} ####".format(est_type_i))
-    import subprocess as s
-    s.call(['notify-send', 'rpg_trajectory_evaluation finished',
-            'results in: {0}'.format(os.path.abspath(args.result_dir))])
+    print "rpg_trajectory_evaluation finished!\nResults in {}".format(os.path.abspath(args.result_dir))
 
 if __name__ == "__main__":
     main()
