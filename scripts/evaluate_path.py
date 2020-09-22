@@ -39,6 +39,7 @@ def plot_column_over_time(x_axis, y_axis, df_1=None, df_2=None, mean=None, std=N
         plt.plot(df_2[x_axis], df_2[y_axis], color='r', label="Planned Path")
     ax1.set_xlabel('{}[{}]'.format(x_axis, x_unit), fontsize=25)
     ax1.set_ylabel('{}[{}]'.format(y_axis, y_unit), fontsize=25)
+    ax1.tick_params(labelsize=20)
     ax1.legend(loc=1, prop={'size': 25})
     plt.savefig(PATH_TO_PLOTS + '/{} over {}'.format(y_axis, x_axis))
 
@@ -49,10 +50,9 @@ def plot_error_over_time(x_axis, y_axis, df_1):
     fig, ax1 = plt.subplots(figsize=(30, 20))
     ax1.set_title('{} error vs. {}'.format(y_axis, x_axis), fontsize=30)
     plt.plot(df_1[x_axis], df_1[y_axis], color='b')
-    ax1.set_xlabel('{}[{}]'.format(x_axis, x_unit), fontsize=25)
-    ax1.set_ylabel('{}[{}]'.format(y_axis, y_unit), fontsize=25)
+    ax1.tick_params(labelsize=20)
 #     ax1.legend(loc=1, prop={'size': 25})
-    plt.savefig(PATH_TO_PLOTS + '/{} error'.format(y_axis))
+    plt.savefig(PATH_TO_PLOTS + '/error_{}'.format(y_axis))
 
 
 def get_unit(axis):
@@ -130,9 +130,9 @@ stop_index = fp_df[(fp_df[['vx', 'vy', 'vz']] == 0).all(1)].index[0]
 
 evaluate_df = create_evaluate_df(gt_df, fp_df)
 
-# plot_column_over_time('x', 'y', gt_df, fp_df)
-#
-# plot_path_and_errors(gt_df, fp_df, evaluate_df, stop_index)
+plot_column_over_time('x', 'y', gt_df, fp_df)
+
+plot_path_and_errors(gt_df, fp_df, evaluate_df, stop_index)
 
 stop_index = fp_df[(fp_df[['vx', 'vy', 'vz']] == 0).all(1)].index[0]
 errors_stats = {}
